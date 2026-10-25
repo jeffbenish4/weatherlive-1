@@ -1,0 +1,12 @@
+{
+  "name": "weatherlive-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium weather dashboard with a server-side WeatherAPI proxy",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

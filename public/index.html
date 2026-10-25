@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090a0d">
+  <meta name="description" content="A premium, developer-friendly live weather dashboard.">
+  <title>Atmos — Weather, with perspective</title>
+  <link rel="preconnect" href="https://cdn.weatherapi.com">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Atmos home"><span class="brand-mark">A</span><span>ATMOS<span class="brand-dot">.</span></span></a>
+    <div class="topbar-meta"><span class="live-dot"></span><span>LIVE WEATHER</span><span class="meta-divider"></span><span>FIELD NOTES / 01</span></div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <p class="eyebrow">YOUR WINDOW TO THE OUTSIDE</p>
+      <h1>Weather, with<br><span>perspective.</span></h1>
+      <p class="intro-copy">A little more context for the world outside.<br class="desktop-break"> Live conditions, translated into a feeling.</p>
+    </section>
+
+    <section class="search-panel" aria-label="City search">
+      <form id="search-form" class="search-form">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label class="sr-only" for="city-input">Search a city</label>
+        <input id="city-input" name="city" type="search" placeholder="Search any city in the world..." autocomplete="off" maxlength="120" required>
+        <button id="search-button" class="search-button" type="submit"><span>Find weather</span><span aria-hidden="true">↗</span></button>
+      </form>
+      <div class="popular-row"><span class="popular-label">QUICK LOOK</span><div id="city-chips" class="city-chips" aria-label="Popular cities"></div></div>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite">Choose a city or search anywhere to get started.</div>
+
+    <section id="weather-section" class="weather-section" hidden aria-label="Current weather">
+      <div class="section-kicker"><span>01 / CURRENT CONDITIONS</span><span id="updated-at">LIVE FROM WEATHERAPI</span></div>
+      <article class="hero-card">
+        <div class="hero-top">
+          <div class="location-block">
+            <p class="eyebrow">RIGHT HERE, RIGHT NOW</p>
+            <h2 id="location-name">—</h2>
+            <p id="location-subtitle" class="location-subtitle">—</p>
+            <p id="local-time" class="local-time">—</p>
+          </div>
+          <div class="condition-art">
+            <img id="condition-icon" alt="" width="96" height="96">
+            <p id="condition-text">—</p>
+          </div>
+        </div>
+        <div class="hero-bottom">
+          <div class="temperature-wrap"><span id="temperature" class="temperature">—°</span><span class="temperature-unit">C</span></div>
+          <div class="mood-panel" id="mood-panel" data-mood="mixed">
+            <div class="mood-label"><span class="mood-spark">✳</span> THE OUTSIDE FEELING</div>
+            <h3 id="mood-title">Mixed</h3>
+            <p id="mood-description">A little of everything in the air.</p>
+          </div>
+        </div>
+        <div class="hero-footer"><span>FEELS LIKE <strong id="feels-like">—°C</strong></span><span>LOCAL CONDITIONS <span class="footer-pulse"></span></span></div>
+      </article>
+
+      <div class="metrics-grid">
+        <article class="metric-card"><div class="metric-head"><span>HUMIDITY</span><span class="metric-symbol">◌</span></div><p id="humidity" class="metric-value">—<small>%</small></p><p class="metric-caption">Moisture in the air</p></article>
+        <article class="metric-card"><div class="metric-head"><span>WIND SPEED</span><span class="metric-symbol">↝</span></div><p id="wind" class="metric-value">—<small> km/h</small></p><p class="metric-caption">Air in motion</p></article>
+        <article class="metric-card"><div class="metric-head"><span>UV INDEX</span><span class="metric-symbol">☼</span></div><p id="uv" class="metric-value">—</p><p class="metric-caption">Strength of the sun</p></article>
+        <article class="metric-card"><div class="metric-head"><span>CLOUD COVER</span><span class="metric-symbol">☁</span></div><p id="cloud" class="metric-value">—<small>%</small></p><p class="metric-caption">Sky covered by clouds</p></article>
+      </div>
+    </section>
+
+    <section id="inspector-section" class="inspector-section" aria-label="API inspector">
+      <div class="inspector-heading"><div><p class="eyebrow">FOR THE CURIOUS</p><h2>Under the hood<span>.</span></h2></div><p>Same response. Two ways to read it.</p></div>
+      <div class="inspector-card">
+        <div class="inspector-toolbar">
+          <div class="tabs" role="tablist" aria-label="JSON display format">
+            <button class="tab active" id="raw-tab" type="button" role="tab" aria-selected="true" aria-controls="json-view" data-mode="raw">Raw JSON</button>
+            <button class="tab" id="formatted-tab" type="button" role="tab" aria-selected="false" aria-controls="json-view" data-mode="formatted">Formatted JSON</button>
+          </div>
+          <button id="copy-button" class="copy-button" type="button" disabled><span aria-hidden="true">▢</span> Copy JSON</button>
+        </div>
+        <div class="code-meta"><span><span class="code-dot"></span> RESPONSE BODY</span><span id="response-meta">WAITING FOR REQUEST</span></div>
+        <pre id="json-view" class="json-view" tabindex="0" aria-label="Weather API response"><code id="json-code">Search for a city to inspect the response.</code></pre>
+        <div class="inspector-footer"><span>POWERED BY WEATHERAPI</span><span id="json-size">0 BYTES</span></div>
+      </div>
+    </section>
+    <footer class="footer"><span>ATMOS<span class="brand-dot">.</span> / WEATHER, WITH PERSPECTIVE</span><span>MADE FOR THE MOMENT <span class="footer-pulse"></span></span></footer>
+  </main>
+</body>
+</html>
